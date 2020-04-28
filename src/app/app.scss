@@ -4,3 +4,56 @@
 // styles are for the entire app and not just one component. Additionally, this 
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
+
+.back-icon{
+    margin-right: -2px !important;
+    margin-left: 0 !important;
+}
+
+.password-title-nav{
+    width: 100%;
+    background-color: #FAFAFB;
+    font-size: 13px;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 0px;
+}
+
+ion-item-divider{
+    font-size: 13px !important;
+    color: #666666;
+    margin-top: 20px;
+}
+
+.border-horz{
+    border-top: 0.5px solid #c6c6c8;
+    border-bottom: 0.5px solid #c6c6c8;
+}
+
+.item-icon{
+    margin-left: -8px !important;
+    margin-right: 5px !important;
+}
+
+// ion-item{
+//     padding-top: 2px;
+//     padding-bottom: 2px;
+// }
+
+.item-icon-end-l{
+    font-size: 15px;
+}
+
+.item-icon-end{
+    font-size: 19px;
+}
+
+.item-icon-end-i{
+    // font-size: 24px;
+}
+
+.item-under-text{
+    font-size: 12px !important;
+    color: #666666;
+    padding: 7px 17px;
+}

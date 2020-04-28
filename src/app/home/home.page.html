@@ -1,14 +1,81 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="Light">
+    <ion-buttons slot="secondary" style="margin-left: -7px !important">
+      <ion-button color="primary">
+        <ion-icon slot="start" name="arrow-back" class="back-icon"></ion-icon>
+        Settings
+      </ion-button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      Wi-Fi
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content color="medium">
+
+  <div style="padding-top: 35px !important">
+    <ion-item-group class="border-horz">
+      <ion-item [lines]="WifiisToggled && activeWifi[0].password !='' ? 'inset' : 'none'">
+        <ion-icon slot="start" name="none" class="item-icon"></ion-icon>
+        <ion-label>Wi-Fi</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="WifiisToggled" checked color="success" (ionChange)="wifiToggled()"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none" button detail="false" *ngIf="WifiisToggled && activeWifi[0].password !=''">
+          <ion-icon slot="start" name="checkmark" color="primary" class="item-icon"></ion-icon>
+        <ion-label>{{activeWifi[0].name}}</ion-label>
+        <ion-icon slot="end" name="md-lock" class="item-icon-end-l"></ion-icon>
+        <ion-icon slot="end" name="wifi" class="item-icon-end"></ion-icon>
+        <ion-icon slot="end" name="information-circle-outline" color="primary" class="item-icon-end-i"></ion-icon>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group *ngIf="WifiisToggled">
+      <ion-item-divider color="medium">
+        <ion-label>CHOOSE A NETWORK...</ion-label> <ion-spinner *ngIf="isloading" color="tertiary" name="lines-small"></ion-spinner>
+      </ion-item-divider>
+
+      <div class="border-horz">
+      <ion-item lines="inset" button detail="false" (click)="presentModal()">
+        <ion-icon slot="start" name="none" class="item-icon" *ngIf="!false"></ion-icon>
+        <ion-spinner slot="start" color="tertiary" name="lines-small" class="item-icon" *ngIf="false"></ion-spinner>
+          <ion-label>Cafeteria</ion-label>
+          <ion-icon slot="end" name="md-lock" class="item-icon-end-l"></ion-icon>
+          <ion-icon slot="end" name="wifi" class="item-icon-end"></ion-icon>
+          <ion-icon slot="end" name="information-circle-outline" color="primary" class="item-icon-end-i"></ion-icon>
+        </ion-item>
+      <ion-item lines="inset" button detail="false">
+        <ion-icon slot="start" name="none" class="item-icon"></ion-icon>
+        <ion-label>Android AP</ion-label>
+        <ion-icon slot="end" name="md-lock" class="item-icon-end-l"></ion-icon>
+        <ion-icon slot="end" name="wifi" class="item-icon-end"></ion-icon>
+        <ion-icon slot="end" name="information-circle-outline" color="primary" class="item-icon-end-i"></ion-icon>
+      </ion-item>
+      <ion-item lines="none" button detail="false">
+        <ion-icon slot="start" name="none" class="item-icon"></ion-icon>
+        <ion-label>Other...</ion-label>
+      </ion-item>
+    </div>
+    </ion-item-group>
+
+    <ion-item-group style="margin-top: 35px !important" class="border-horz" *ngIf="WifiisToggled">
+        <ion-item lines="full">
+          <ion-label>Ask to Join Networks</ion-label>
+          <ion-toggle slot="end" [(ngModel)]="asktojoin" color="success"></ion-toggle>
+        </ion-item>
+      </ion-item-group>
+      <div class="item-under-text" *ngIf="WifiisToggled && !asktojoin">
+        Known networks will be joined automatically. If no known networks are available, you will have to manually select a network.
+      </div>
+
+      <div class="item-under-text" *ngIf="WifiisToggled && asktojoin">
+          Known networks will be joined automatically. If no known networks are available, you will be asked before joining a new network.
+        </div>
+
+      <div class="item-under-text" *ngIf="!WifiisToggled">
+          AirDrop, AirPlay, and location services require Wi-Fi.
+        </div>
+
   </div>
+
 </ion-content>

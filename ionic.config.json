@@ -1,5 +1,7 @@
 {
   "name": "Settings",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
